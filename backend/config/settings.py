@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import dj_database_url
 from datetime import timedelta
 from decouple import config
+from datetime import timedelta
 
 load_dotenv()
 
@@ -96,7 +97,7 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
-
+    "DEFAULT_PERMISSIONS_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
 SIMPLE_JWT = {

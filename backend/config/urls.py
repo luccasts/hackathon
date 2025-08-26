@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework import routers
 from django.http import HttpResponse
 from usuarios.views import UsuarioViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.DefaultRouter()
 def health(_): return HttpResponse("Api online")
