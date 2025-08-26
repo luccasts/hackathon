@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
 
 export interface AuthContextType {
-    authenticatedUser: AuthType;
+  authenticatedUser: AuthType;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
 }

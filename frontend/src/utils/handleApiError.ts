@@ -5,6 +5,7 @@ export function handleApiError(error: AxiosError | unknown) {
   if (error instanceof AxiosError) {
     const status = error.response?.status;
     const data = error.response?.data;
+    console.log(error.response?.data)
     const message = data?.message || "Erro desconhecido.";
     console.error(error)
     switch (status) {

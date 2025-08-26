@@ -19,7 +19,7 @@ export const service = {
 
   loginUser: async (email: string, password: string) => {
     try {
-      const res = await axiosInstance.post("/api/usuarios/login/", {
+      const res = await axiosInstance.post("/api/auth/login/", {
         email,
         password,
       });
