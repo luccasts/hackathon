@@ -5,10 +5,10 @@ import { handleApiError } from "../utils/handleApiError";
 export const service = {
   registerUser: async (username: string, email: string, password: string) => {
     try {
-      const res = await axiosInstance.post("/api/usuarios/register/", {
+      const res = await axiosInstance.post("/api/auth/register/", {
         username,
         email,
-        password,
+        senha: password,
       });
       console.log(res, "deu certo");
       toast.success("Usuário criado com sucesso");

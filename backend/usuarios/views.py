@@ -1,3 +1,4 @@
+from rest_framework.permissions import AllowAny
 from rest_framework import generics, viewsets
 from django.contrib.auth import get_user_model
 from .serializers import Registro, Usuario
@@ -12,6 +13,6 @@ class UsuarioViewSet(viewsets.ModelViewSet):
 class RegistroView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = Registro
-
+    permission_classes = [AllowAny] 
 
 # Create your views here.

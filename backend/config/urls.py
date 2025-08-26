@@ -29,5 +29,5 @@ urlpatterns = [
     path('', health),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/usuarios/', include("usuarios.urls")),
+    path('api/auth/', include("usuarios.urls")),
 ]
