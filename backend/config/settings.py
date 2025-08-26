@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    "user",
+    "usuarios",
 ]
 
 MIDDLEWARE = [
@@ -83,13 +83,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        os.getenv("DATABASE_URL","postgres://postgres:postgres@localhost:5432/dbteste")
+    'default': dj_database_url.config(default=
+        os.getenv("DATABASE_URL","postgres://postgres:postgres@localhost:5432/db_hackathon")
     )
 }
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.athentication.JWTAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
@@ -103,6 +103,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'usuarios.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
