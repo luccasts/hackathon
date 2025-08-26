@@ -5,7 +5,7 @@ import { handleApiError } from "../utils/handleApiError";
 export const service = {
   registerUser: async (username: string, email: string, password: string) => {
     try {
-      const res = axiosInstance.post("/", {
+      const res = await axiosInstance.post("/api/usuarios/register/", {
         username,
         email,
         password,
@@ -19,14 +19,27 @@ export const service = {
 
   loginUser: async (email: string, password: string) => {
     try {
-      const res = axiosInstance.post("/api/users/login", {
+      const res = await axiosInstance.post("/api/usuarios/login/", {
         email,
         password,
       });
-      console.log(res, "deu certo");
-      toast.success("Usuário criado com sucesso");
+      toast.success("Login realizado com sucesso!");
+      return res;
     } catch (error) {
       handleApiError(error);
+    }
+  },
+
+  getUserData: async (access: string) => {
+    try {
+      const res = await axiosInstance.get("/api/usuarios/refresh/", {
+        headers: {
+          Authorization: `Bearer ${access}`,
+        },
+      });
+      return res;
+    } catch (error) {
+      console.error(error);
     }
   },
 };

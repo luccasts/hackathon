@@ -6,7 +6,7 @@ export function handleApiError(error: AxiosError | unknown) {
     const status = error.response?.status;
     const data = error.response?.data;
     const message = data?.message || "Erro desconhecido.";
-
+    console.error(error)
     switch (status) {
       case 400:
         toast.error(`Erro de validação: ${message}`);
