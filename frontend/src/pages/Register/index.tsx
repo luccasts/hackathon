@@ -11,7 +11,7 @@ export default function RegisterPage() {
     await service.registerUser(username, email, password);
   }
   return (
-    <section className="flex items-center justify-center min-h-screen bg-background px-4">
+    <section className="flex items-center justify-center  bg-background px-4 flex-1">
       <div className="flex flex-col md:flex-row w-full max-w-4xl rounded-lg overflow-hidden shadow-lg">
         {/* Lado esquerdo (Login) */}
         <div className="w-full md:w-1/2 bg-secondary text-texto flex flex-col items-center justify-center p-8">
@@ -74,7 +74,8 @@ export default function RegisterPage() {
             </div>
             <button
               type="submit"
-              className="w-full bg-secondary text-texto py-2 rounded-full font-bold hover:bg-secondary-hover transition"            >
+              className="w-full bg-secondary text-texto py-2 rounded-full font-bold hover:bg-secondary-hover transition"
+            >
               CADASTRAR
             </button>
           </form>
