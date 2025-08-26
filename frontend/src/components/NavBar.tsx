@@ -4,9 +4,9 @@ import { Link } from "react-router";
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className="bg-gray-900">
+    <header className="bg-secondary">
       <nav className="container m-auto text-white px-6 py-4 flex items-center justify-between">
-        <div className="font-bold text-xl">Logo</div>
+        <div className="font-bold text-xl"><Link to={"/"}>Logo</Link></div>
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? "✖" : "☰"}
         </button>
@@ -20,16 +20,16 @@ export default function NavBar() {
             Nav
           </Link>
           <Link
-            to="/"
+            to="/criar-conta"
             className="block px-4 py-2 hover:bg-gray-700 md:hover:bg-transparent"
           >
-            Nav
+            Criar Contar
           </Link>
           <Link
-            to="/"
+            to="/entrar"
             className="block px-4 py-2 hover:bg-gray-700 md:hover:bg-transparent"
           >
-            Nav
+            Entrar
           </Link>
         </div>
       </nav>
