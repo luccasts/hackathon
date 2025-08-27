@@ -1,10 +1,102 @@
-import children from "../../assets/hug-children.png";
+// import children from "../../assets/hug-children.png";
+// import { Search, Video, UserPlus } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="bg-background bg-[url('/assets/img/background-home.png')]">
-      <h1>Página Home</h1>
-      <img className="w-3xs" src={children} alt="" />
+    <div className="min-h-screen flex flex-col">
+    
+      {/* Conteúdo principal */}
+      <main className="flex-1">
+
+        {/* Hero Section */}
+        <section className="text-center py-20 bg-background-hover px-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-text">
+            Entenda melhor o comportamento do seu filho
+          </h1>
+          <p className="mt-4 text-lg text-text max-w-2xl mx-auto">
+            Receba orientações confiáveis e conteúdos personalizados com base nas suas dúvidas.
+          </p>
+
+          <div className="mt-6 flex justify-center">
+            <input
+              type="text" 
+              className="p-3 w-80 md:w-96 border-border-black border rounded-l-lg placeholder:text-placeholder text-text"
+              placeholder="Digite uma palavra-chave: atraso na fala, agressividade..."
+            />
+            <button className="bg-primary hover:bg-primary-hover text-support px-6 rounded-r">
+              Buscar conteúdos
+            </button>
+          </div>
+        </section>
+
+        {/* Como Funciona */}
+        <section id="como-funciona" className="py-20 text-center px-6">
+          <h2 className="text-3xl text-text font-bold mb-12">Como Funciona</h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            
+            {/* Passo 1 */}
+            <div className="p-6 rounded-xl shadow-sm hover:shadow-md transition">
+              <div className="flex justify-center mb-4 text-primary">
+                {/* <Search size={40} /> */}
+              </div>
+              <p className="text-text">
+                Você digita uma dúvida ou comportamento da criança.
+              </p>
+            </div>
+
+            {/* Passo 2 */}
+            <div className="p-6 rounded-xl shadow-sm hover:shadow-md transition">
+              <div className="flex justify-center mb-4 text-primary">
+                {/* <Video size={40} /> */}
+              </div>
+              <p className="text-text">
+                O sistema busca vídeos e conteúdos explicativos confiáveis.
+              </p>
+            </div>
+
+            {/* Passo 3 */}
+            <div className="p-6  rounded-xl shadow-sm hover:shadow-md transition">
+              <div className="flex justify-center mb-4 text-primary">
+                {/* <UserPlus size={40} /> */}
+              </div>
+              <p className="text-text">
+                Se quiser, pode se cadastrar para um teste mais completo <br/>(sem diagnóstico).
+              </p>
+            </div>
+          </div>
+
+          <button className="mt-10 bg-primary hover:bg-primary-hover text-support px-6 py-3 rounded-lg">
+            Saiba mais sobre o processo
+          </button>
+        </section>
+
+        {/* Destaques */}
+        <section className="py-20 bg-background-hover text-center px-6">
+          <h2 className="text-3xl text-text font-bold mb-12">Destaques dos Conteúdos</h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="p-6 border rounded-xl shadow-sm bg-background hover:shadow-md transition">
+              <h3 className="text-lg font-semibold text-text">
+                Atraso na fala: quando se preocupar?
+              </h3>
+            </div>
+            <div className="p-6 border rounded-xl shadow-sm bg-white hover:shadow-md transition">
+              <h3 className="text-lg font-semibold text-text">
+                Como lidar com birras frequentes
+              </h3>
+            </div>
+            <div className="p-6 border rounded-xl shadow-sm bg-white hover:shadow-md transition">
+              <h3 className="text-lg font-semibold text-text">
+                Dificuldade de interação: o que observar?
+              </h3>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+      {/* Rodapé */}
+      <footer className="text-center py-6 text-gray-500 text-sm border-t">
+        © 2025 - Projeto Hackathon
+      </footer>
     </div>
   );
 }

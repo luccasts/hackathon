@@ -12,10 +12,12 @@
   --color-background: #FFFFFF;
   --color-background-hover: #F4F4F4;
 
+  --color-border-black: #333333;
+
   --color-text: #333333;
   --color-text-hover: #1A3E5C;
   --color-placeholder: #B8B8B8;
-  
+
   --color-menu: #3a6ea5;
   --color-menu-hover: #335f8d;
 }
