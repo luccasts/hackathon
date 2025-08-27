@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 class User(AbstractUser):
     email = models.EmailField(unique=True)
+    share_data = models.BooleanField(default=False)
 
     first_name = None
     last_name = None
