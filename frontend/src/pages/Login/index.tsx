@@ -32,7 +32,7 @@ export default function LoginPage() {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="w-full px-4 py-2 bg-background text-texto-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
+                className="w-full px-4 py-2 bg-background text-text-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
             </div>
             <div>
@@ -44,12 +44,12 @@ export default function LoginPage() {
                 name="password"
                 id="password"
                 placeholder="Senha"
-                className="w-full px-4 py-2 bg-background text-texto-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
+                className="w-full px-4 py-2 bg-background text-text-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-secondary text-texto py-2 rounded-full font-bold hover:bg-secondary-hover transition"
+              className="w-full bg-secondary text-text py-2 rounded-full font-bold hover:bg-secondary-hover transition"
             >
               Entrar
             </button>
@@ -57,7 +57,7 @@ export default function LoginPage() {
         </div>
 
         {/* Lado direito (agora com o estilo do lado esquerdo) */}
-        <div className="w-full md:w-1/2 bg-secondary text-texto flex flex-col items-center justify-center p-8">
+        <div className="w-full md:w-1/2 bg-secondary text-text flex flex-col items-center justify-center p-8">
           <div className="mb-6 text-center">
             <div className="text-2xl font-bold mb-2">Hackathon</div>
             <p className="text-lg font-semibold">Seja bem-vindo!</p>
