@@ -2,8 +2,11 @@
 // import { Search, Video, UserPlus } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../context/auth/useAuth";
 export default function Home() {
   const [value, setValue] = useState("");
+  const { authenticatedUser } = useAuth();
+  console.log("user", authenticatedUser);
   const navigate = useNavigate();
   function sendAssistant(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

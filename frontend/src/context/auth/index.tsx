@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import type { AuthType, AuthProviderProps } from "./types";
 import { AuthContext } from "./auth";
 import { useNavigate } from "react-router";
-import { axiosInstance } from "../../api/instance";
+import { axiosPublic } from "../../api/axiosPublic";
 import { service } from "../../api/service";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
@@ -21,9 +21,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
       if (access && refresh) {
         try {
-          axiosInstance.defaults.headers.common["Authorization"] =
+          axiosPublic.defaults.headers.common["Authorization"] =
             `Bearer ${access}`;
-          const userRes = await service.getUserData(access);
+          const userRes = await service.refreshAccessToken(access);
           setAuthenticatedUser({
             user: userRes?.data,
             token: access,
@@ -53,10 +53,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           localStorage.setItem("access", access);
           localStorage.setItem("refresh", refresh);
 
-          axiosInstance.defaults.headers.common["Authorization"] =
+          axiosPublic.defaults.headers.common["Authorization"] =
             `Bearer ${access}`;
-          const userRes = await service.getUserData(access);
-
+          const userRes = await service.getUserData();
+          console.log(userRes, "userRes");
           setAuthenticatedUser({
             user: userRes?.data,
             token: access,
@@ -76,7 +76,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     localStorage.removeItem("refresh");
     setAuthenticatedUser({ user: null, token: null });
     navigate("/");
-    toast.success("Usuário Deslogado")
+    toast.success("Usuário Deslogado");
   }, [setAuthenticatedUser, navigate]);
 
   const contextValue = useMemo(

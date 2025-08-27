@@ -1,11 +1,12 @@
-import { axiosInstance } from "./instance";
+import { axiosPublic } from "./axiosPublic";
 import { toast } from "sonner";
 import { handleApiError } from "../utils/handleApiError";
+import { axiosPrivate } from "./axiosPrivate";
 
 export const service = {
   registerUser: async (username: string, email: string, password: string) => {
     try {
-      const res = await axiosInstance.post("/api/auth/register/", {
+      const res = await axiosPublic.post("/api/auth/register/", {
         username,
         email,
         password: password,
@@ -13,13 +14,14 @@ export const service = {
       console.log(res, "deu certo");
       toast.success("Usuário criado com sucesso");
     } catch (error) {
+      console.log(username, email, password);
       handleApiError(error);
     }
   },
 
   loginUser: async (email: string, password: string) => {
     try {
-      const res = await axiosInstance.post("/api/auth/login/", {
+      const res = await axiosPublic.post("/api/auth/login/", {
         email,
         password,
       });
@@ -29,13 +31,19 @@ export const service = {
       handleApiError(error);
     }
   },
-
-  getUserData: async (access: string) => {
+  getUserData: async () => {
     try {
-      const res = await axiosInstance.get("/api/usuarios/refresh/", {
-        headers: {
-          Authorization: `Bearer ${access}`,
-        },
+      const res = await axiosPrivate.get("/api/auth/me/");
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  refreshAccessToken: async (refresh: string) => {
+    try {
+      const res = await axiosPublic.post("/api/auth/refresh/", {
+        refresh,
       });
       return res;
     } catch (error) {
@@ -45,7 +53,7 @@ export const service = {
 
   postMessage: async (message: string) => {
     try {
-      const res = await axiosInstance.post("api/assistant/", {
+      const res = await axiosPrivate.post("api/assistant/", {
         question: message,
       });
       return res;
@@ -56,6 +64,17 @@ export const service = {
       //   //   console.log(error?.response.data);
       //   // }
       // }
+      console.error(error);
+    }
+  },
+
+  postChildScreening: async (answers: (boolean | null)[]) => {
+    try {
+      const res = await axiosPrivate.post("/api/child-screening/", {
+        answers: answers,
+      });
+      return res;
+    } catch (error) {
       console.error(error);
     }
   },

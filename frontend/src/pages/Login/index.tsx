@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { service } from "../../api/service";
 import { useAuth } from "../../context/auth/useAuth";
-import { axiosInstance } from "../../api/instance";
 import { Link } from "react-router";
 
 export default function LoginPage() {
@@ -28,7 +26,7 @@ export default function LoginPage() {
               <input
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                type="text"
+                type="email"
                 name="email"
                 id="email"
                 placeholder="Email"
@@ -63,7 +61,10 @@ export default function LoginPage() {
             <p className="text-lg font-semibold">Seja bem-vindo!</p>
             <p>Crie sua conta agora mesmo.</p>
           </div>
-          <Link to={"/criar-conta"} className="border border-support px-6 py-2 rounded-full font-bold hover:bg-support-hover hover:text-primary-hover transition">
+          <Link
+            to={"/criar-conta"}
+            className="border border-support px-6 py-2 rounded-full font-bold hover:bg-support-hover hover:text-primary-hover transition"
+          >
             Criar conta
           </Link>
           {/* Featured soon

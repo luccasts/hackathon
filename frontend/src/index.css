@@ -3,20 +3,20 @@
   --color-primary: #3a6ea5;
   --color-primary-hover: #1a3e5c;
 
-  --color-secondary: #A8DADC;
-  --color-secondary-hover: #81C7C5;
+  --color-secondary: #a8dadc;
+  --color-secondary-hover: #81c7c5;
 
-  --color-support: #F1F1F1;
-  --color-support-hover: #EAEAEA;
+  --color-support: #f1f1f1;
+  --color-support-hover: #eaeaea;
 
-  --color-background: #FFFFFF;
-  --color-background-hover: #F4F4F4;
+  --color-background: #ffffff;
+  --color-background-hover: #f4f4f4;
 
   --color-border-black: #333333;
 
   --color-text: #333333;
-  --color-text-hover: #1A3E5C;
-  --color-placeholder: #B8B8B8;
+  --color-text-hover: #1a3e5c;
+  --color-placeholder: #b8b8b8;
 
   --color-menu: #3a6ea5;
   --color-menu-hover: #335f8d;
@@ -28,7 +28,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(14, 14, 14, 0.87);
   background-color: var(--color-background);
 
   font-synthesis: none;

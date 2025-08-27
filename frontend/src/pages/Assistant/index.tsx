@@ -14,9 +14,8 @@ export default function AssistantPage() {
     }
   }, [pergunta]);
   return (
-    <div>
-      <h1>Virtual Assistant</h1>
+    <main>
       <ChatBot initialMessage={initialMessage} />
-    </div>
+    </main>
   );
 }
