@@ -91,7 +91,7 @@ export default function RegisterPage() {
             </div>
             <button
               type="submit"
-              className="w-full bg-primary text-support py-2 rounded-full font-bold hover:bg-primary-hover transition"
+              className="w-full bg-primary text-support py-2 rounded-full font-bold hover:bg-primary-hover transition cursor-pointer"
             >
               CADASTRAR
             </button>

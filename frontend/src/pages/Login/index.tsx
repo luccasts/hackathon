@@ -46,7 +46,7 @@ export default function LoginPage() {
             </div>
             <button
               type="submit"
-              className="w-full bg-primary text-support py-2 rounded-full font-bold hover:bg-primary-hover transition"
+              className="w-full bg-primary text-support py-2 rounded-full font-bold hover:bg-primary-hover transition cursor-pointer"
             >
               Entrar
             </button>
@@ -61,7 +61,7 @@ export default function LoginPage() {
           </div>
           <Link
             to={"/criar-conta"}
-            className="border border-support px-6 py-2 rounded-full font-bold hover:bg-support-hover hover:text-primary-hover transition"
+            className="border border-support px-6 py-2 rounded-full font-bold hover:bg-support-hover hover:text-primary-hover transition cursor-pointer"
           >
             Criar conta
           </Link>

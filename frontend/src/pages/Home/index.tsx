@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/auth/useAuth";
 import hero from "../../assets/hero.png";
+import { FcSearch, FcVideoFile } from "react-icons/fc";
+import { CiUser } from "react-icons/ci";
 export default function Home() {
   const [value, setValue] = useState("");
   const { authenticatedUser } = useAuth();
@@ -17,12 +19,9 @@ export default function Home() {
   }
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Conteúdo principal */}
       <div className="flex-1">
-        {/* Hero Section */}
         <section className=" text-center py-20 bg-background-hover px-2">
           <div className="container flex flex-col sm:flex-row items-center gap-3 m-auto">
-            {/* Imagem */}
             <div className="flex-1">
               <img
                 src={hero}
@@ -31,7 +30,6 @@ export default function Home() {
               />
             </div>
 
-            {/* Texto e form */}
             <div className="flex-1 text-center sm:text-left">
               <h1 className="text-3xl md:text-5xl font-bold text-text">
                 Entenda melhor o comportamento do seu filho
@@ -65,30 +63,27 @@ export default function Home() {
         <section id="como-funciona" className="py-20 text-center px-6">
           <h2 className="text-3xl text-text font-bold mb-12">Como Funciona</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Passo 1 */}
             <div className="p-6 rounded-xl shadow-sm hover:shadow-md transition">
               <div className="flex justify-center mb-4 text-primary">
-                {/* <Search size={40} /> */}
+                <FcSearch className="size-10" />
               </div>
               <p className="text-text">
                 Você digita uma dúvida ou comportamento da criança.
               </p>
             </div>
 
-            {/* Passo 2 */}
             <div className="p-6 rounded-xl shadow-sm hover:shadow-md transition">
               <div className="flex justify-center mb-4 text-primary">
-                {/* <Video size={40} /> */}
+                <FcVideoFile className="size-10" />
               </div>
               <p className="text-text">
                 O sistema busca vídeos e conteúdos explicativos confiáveis.
               </p>
             </div>
 
-            {/* Passo 3 */}
             <div className="p-6  rounded-xl shadow-sm hover:shadow-md transition">
               <div className="flex justify-center mb-4 text-primary">
-                {/* <UserPlus size={40} /> */}
+                <CiUser className="size-10" />
               </div>
               <p className="text-text">
                 Se quiser, pode se cadastrar para um teste mais completo <br />
