@@ -15,7 +15,9 @@ const videosRecomendados = [
     titulo: "Sinais de autismo em crianças",
     url: "https://youtu.be/9EbqqBhJXyI",
   },
-  { titulo: "Entenda o TEA", url: "https://youtu.be/Ve6EZ4PejWU" },
+  { 
+    titulo: "Entenda o TEA", 
+    url: "https://youtu.be/Ve6EZ4PejWU" },
   {
     titulo: "Como lidar com o autismo na infância",
     url: "https://youtu.be/D4StEQbBeEc",
@@ -78,7 +80,7 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
 
   return (
     <div
-      className="max-w-lg mx-auto mt-10 p-6 border rounded-md font-sans"
+      className="max-w-4xl mx-auto mt-6 sm:mt-10 p-4 sm:p-6 border rounded-xl shadow-md font-sans"
       style={{
         borderColor: "var(--color-primary)",
         backgroundColor: "var(--color-support)",
@@ -92,7 +94,7 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
       </h2>
 
       <div
-        className="mb-4 h-64 overflow-y-auto rounded p-4 flex flex-col gap-3"
+        className="mb-4 h-120 overflow-y-auto rounded p-4 flex flex-col gap-3"
         style={{
           backgroundColor: "var(--color-background)",
           border: `1px solid var(--color-primary)`,
