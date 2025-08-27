@@ -5,3 +5,7 @@ export const axiosPublic = axios.create({
   timeout: 5000,
   headers: { "Content-Type": "application/json" },
 });
+axiosPublic.interceptors.request.use((config) => {
+  delete config.headers["Authorization"];
+  return config;
+});

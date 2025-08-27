@@ -13,7 +13,6 @@ export default function LoginPage() {
   return (
     <section className="flex items-center justify-center  bg-background px-4 flex-1">
       <div className="flex flex-col md:flex-row w-full max-w-4xl rounded-lg overflow-hidden shadow-lg">
-        {/* Lado esquerdo (agora com o estilo do lado direito) */}
         <div className="w-full md:w-1/2 bg-support p-8">
           <h2 className="text-xl font-bold text-center text-text">
             Entrar na conta
@@ -54,7 +53,6 @@ export default function LoginPage() {
           </form>
         </div>
 
-        {/* Lado direito (agora com o estilo do lado esquerdo) */}
         <div className="w-full md:w-1/2 bg-primary text-support flex flex-col items-center justify-center p-8">
           <div className="mb-6 text-center">
             <div className="text-2xl font-bold mb-2">Compreender é Cuidar</div>

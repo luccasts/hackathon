@@ -63,7 +63,7 @@ export default function ChildScreeningForm() {
 
   if (!started) {
     return (
-      <div className="max-w-xl mx-auto p-6 bg-white text-black shadow rounded">
+      <div className="max-w-xl mx-auto p-6 bg-white text-black shadow rounded flex flex-col">
         <h1 className="text-2xl font-bold mb-4">
           Triagem Inicial - M-CHAT-R/F
         </h1>
@@ -78,7 +78,7 @@ export default function ChildScreeningForm() {
         </p>
         <button
           onClick={() => setStarted(true)}
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+          className="bg-primary text-white px-6 py-2 rounded hover:bg-primary-hover cursor-pointer"
         >
           Iniciar Questionário
         </button>

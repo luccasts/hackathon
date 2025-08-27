@@ -15,7 +15,6 @@ export default function RegisterPage() {
   return (
     <section className="flex items-center justify-center bg-background px-4 flex-1">
       <div className="flex flex-col md:flex-row w-full max-w-4xl rounded-lg overflow-hidden shadow-lg">
-        {/* Lado esquerdo (Login) */}
         <div className="w-full md:w-1/2 bg-primary text-support flex flex-col items-center justify-center p-8">
           <div className="mb-6 text-center">
             <div className="text-2xl font-bold mb-2">Compreender é Cuidar</div>
@@ -34,7 +33,6 @@ export default function RegisterPage() {
           </Link> */}
         </div>
 
-        {/* Lado direito (Cadastro) */}
         <div className="w-full md:w-1/2 bg-support p-8">
           <h2 className="text-xl font-bold text-center text-text">
             Crie sua conta
