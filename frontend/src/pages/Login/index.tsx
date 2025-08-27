@@ -9,7 +9,6 @@ export default function LoginPage() {
   const { login } = useAuth();
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(password, email);
     await login(email, password);
   }
   return (

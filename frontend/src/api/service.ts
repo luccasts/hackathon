@@ -42,4 +42,15 @@ export const service = {
       console.error(error);
     }
   },
+
+  postMessage: async (message: string) => {
+    try {
+      const res = await axiosInstance.post("api/assistant/", {
+        question: message,
+      });
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

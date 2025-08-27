@@ -16,7 +16,7 @@ def assistant_view(request):
             
             answer = f"Você perguntou: {question}. Esta é uma resposta simulada da IA."
 
-            return JsonResponse({"resposta": answer})
+            return JsonResponse({"answer": answer})
         
         except Exception as e:
             return JsonResponse({"erro": f"Erro no processamento: {str(e)}"}, status=500)
