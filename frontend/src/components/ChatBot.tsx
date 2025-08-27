@@ -5,13 +5,39 @@ type Mensagem = {
   type: "user" | "ia";
   text: string;
 };
+
 interface ChatBotProps {
   initialMessage?: string;
 }
+
+const videosRecomendados = [
+  {
+    titulo: "Sinais de autismo em crianças",
+    url: "https://youtu.be/9EbqqBhJXyI",
+  },
+  { titulo: "Entenda o TEA", url: "https://youtu.be/Ve6EZ4PejWU" },
+  {
+    titulo: "Como lidar com o autismo na infância",
+    url: "https://youtu.be/D4StEQbBeEc",
+  },
+];
+
+const confirmarSuspeita = (texto: string) => {
+  const t = texto.toLowerCase();
+  return (
+    t.includes("suspeita de tea") ||
+    t.includes("suspeita de autismo") ||
+    t.includes("transtorno do espectro autista") ||
+    t.includes("indícios de autismo") ||
+    t.includes("pode estar relacionado ao tea")
+  );
+};
+
 export default function ChatBot({ initialMessage }: ChatBotProps) {
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [history, setHistory] = useState<Mensagem[]>([]);
+  const [mostrarVideos, setMostrarVideos] = useState(false);
 
   useEffect(() => {
     if (initialMessage) {
@@ -24,6 +50,7 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
 
     setLoading(true);
     setHistory((prev) => [...prev, { type: "user", text }]);
+    setMostrarVideos(false);
 
     try {
       const res = await service.postMessage(text);
@@ -32,6 +59,7 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
         "Não consegui entender muito bem. Tente reformular sua pergunta.";
 
       setHistory((prev) => [...prev, { type: "ia", text: resposta }]);
+      setMostrarVideos(confirmarSuspeita(resposta));
     } catch (err) {
       console.error(err);
       const erroMsg =
@@ -89,6 +117,7 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
             {msg.text}
           </div>
         ))}
+
         {loading && (
           <p
             className="text-sm italic"
@@ -98,6 +127,19 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
           </p>
         )}
       </div>
+
+      {mostrarVideos && (
+        <div>
+          <h3>Vídeos recomendados:</h3>
+          {videosRecomendados.map((video, index) => (
+            <div key={index}>
+              <a href={video.url} target="_blank" rel="noreferrer">
+                {video.titulo}
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
 
       <form
         className="flex gap-3"

@@ -6,10 +6,11 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [shareData, setShareData] = useState(false);
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(username, password, email);
-    await service.registerUser(username, email, password);
+    await service.registerUser(username, email, password, shareData);
   }
   return (
     <section className="flex items-center justify-center bg-background px-4 flex-1">
@@ -17,11 +18,14 @@ export default function RegisterPage() {
         {/* Lado esquerdo (Login) */}
         <div className="w-full md:w-1/2 bg-primary text-support flex flex-col items-center justify-center p-8">
           <div className="mb-6 text-center">
-            <div className="text-2xl font-bold mb-2">Hackathon</div>
+            <div className="text-2xl font-bold mb-2">Compreender é Cuidar</div>
             <p className="text-lg font-semibold">Seja bem-vindo!</p>
             <p>Acesse sua conta agora mesmo.</p>
           </div>
-          <Link to={"/entrar"} className="border border-background px-6 py-2 rounded-full font-bold hover:bg-support hover:text-text-hover transition">
+          <Link
+            to={"/entrar"}
+            className="border border-background px-6 py-2 rounded-full font-bold hover:bg-support hover:text-text-hover transition"
+          >
             ENTRAR
           </Link>
           {/* Featured soon
@@ -73,6 +77,19 @@ export default function RegisterPage() {
                 placeholder="Senha"
                 className="w-full px-4 py-2 bg-background text-text placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
+            </div>
+            <div className="m-2">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={shareData === true} // checked se for 1
+                  onChange={(e) =>
+                    setShareData(e.target.checked ? true : false)
+                  } // atualiza 1 ou 0
+                />
+                Autorizo o armazenamento dos meus dados e das respostas
+                fornecidas.
+              </label>
             </div>
             <button
               type="submit"

@@ -14,7 +14,7 @@ export default function AssistantPage() {
     }
   }, [pergunta]);
   return (
-    <main>
+    <main className="flex-1">
       <ChatBot initialMessage={initialMessage} />
     </main>
   );

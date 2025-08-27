@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 import { axiosPublic } from "../../api/axiosPublic";
 import { service } from "../../api/service";
 import { toast } from "sonner";
-import { AxiosError } from "axios";
 import { handleApiError } from "../../utils/handleApiError";
 export default function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
@@ -17,23 +16,18 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     async function loadUser() {
       const access = localStorage.getItem("access");
-      const refresh = localStorage.getItem("refresh");
 
-      if (access && refresh) {
+      if (access) {
         try {
           axiosPublic.defaults.headers.common["Authorization"] =
             `Bearer ${access}`;
-          const userRes = await service.refreshAccessToken(access);
+
+          const userRes = await service.getUserData();
           setAuthenticatedUser({
             user: userRes?.data,
             token: access,
           });
         } catch (error) {
-          if (error instanceof AxiosError) {
-            toast.error(error.response?.data?.message || "Erro de API");
-          } else if (error instanceof Error) {
-            toast.error(error.message);
-          }
           console.error("Erro ao carregar usuário:", error);
           localStorage.clear();
           setAuthenticatedUser({ user: null, token: null });

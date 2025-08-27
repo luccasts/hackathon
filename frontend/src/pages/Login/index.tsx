@@ -57,7 +57,7 @@ export default function LoginPage() {
         {/* Lado direito (agora com o estilo do lado esquerdo) */}
         <div className="w-full md:w-1/2 bg-primary text-support flex flex-col items-center justify-center p-8">
           <div className="mb-6 text-center">
-            <div className="text-2xl font-bold mb-2">Hackathon</div>
+            <div className="text-2xl font-bold mb-2">Compreender é Cuidar</div>
             <p className="text-lg font-semibold">Seja bem-vindo!</p>
             <p>Crie sua conta agora mesmo.</p>
           </div>

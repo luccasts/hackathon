@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/auth/useAuth";
+import hero from "../../assets/hero.png";
 export default function Home() {
   const [value, setValue] = useState("");
   const { authenticatedUser } = useAuth();
@@ -17,37 +18,44 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Conteúdo principal */}
-      <main className="flex-1">
+      <div className="flex-1">
         {/* Hero Section */}
-        <section className="text-center py-20 bg-background-hover px-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-text">
-            Entenda melhor o comportamento do seu filho
-          </h1>
-          <p className="mt-4 text-lg text-text max-w-2xl mx-auto">
-            Receba orientações confiáveis e conteúdos personalizados com base
-            nas suas dúvidas.
-          </p>
+        <section className="text-center py-20 bg-background-hover px-6 flex items-center">
+          <img
+            src={hero}
+            alt="Um adulto conversando com uma criança"
+            width={600}
+            className="rounded-2xl"
+          />
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold text-text">
+              Entenda melhor o comportamento do seu filho
+            </h1>
+            <p className="mt-4 text-lg text-text max-w-2xl mx-auto">
+              Receba orientações confiáveis e conteúdos personalizados com base
+              nas suas dúvidas.
+            </p>
 
-          <form
-            className="mt-6 flex justify-center"
-            onSubmit={(e) => sendAssistant(e)}
-          >
-            <input
-              type="text"
-              className="p-3 w-80 md:w-96 border-border-black border rounded-l-lg placeholder:text-placeholder text-text"
-              placeholder="Digite uma palavra-chave: atraso na fala, agressividade..."
-              onChange={(e) => setValue(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="bg-primary hover:bg-primary-hover text-support px-6 rounded-r"
+            <form
+              className="mt-6 flex justify-center"
+              onSubmit={(e) => sendAssistant(e)}
             >
-              Buscar conteúdos
-            </button>
-          </form>
+              <input
+                type="text"
+                className="p-3 w-80 md:w-96 border-border-black border rounded-l-lg placeholder:text-placeholder text-text"
+                placeholder="Digite uma palavra-chave: atraso na fala, agressividade..."
+                onChange={(e) => setValue(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="bg-primary hover:bg-primary-hover text-support px-6 rounded-r"
+              >
+                Buscar conteúdos
+              </button>
+            </form>
+          </div>
         </section>
 
-        {/* Como Funciona */}
         <section id="como-funciona" className="py-20 text-center px-6">
           <h2 className="text-3xl text-text font-bold mb-12">Como Funciona</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -88,7 +96,6 @@ export default function Home() {
           </button>
         </section>
 
-        {/* Destaques */}
         <section className="py-20 bg-background-hover text-center px-6">
           <h2 className="text-3xl text-text font-bold mb-12">
             Destaques dos Conteúdos
@@ -111,12 +118,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
-
-      {/* Rodapé */}
-      <footer className="text-center py-6 text-gray-500 text-sm border-t">
-        © 2025 - Projeto Hackathon
-      </footer>
+      </div>
     </div>
   );
 }

@@ -4,12 +4,18 @@ import { handleApiError } from "../utils/handleApiError";
 import { axiosPrivate } from "./axiosPrivate";
 
 export const service = {
-  registerUser: async (username: string, email: string, password: string) => {
+  registerUser: async (
+    username: string,
+    email: string,
+    password: string,
+    share_data: boolean,
+  ) => {
     try {
       const res = await axiosPublic.post("/api/auth/register/", {
         username,
         email,
         password: password,
+        share_data: share_data,
       });
       console.log(res, "deu certo");
       toast.success("Usuário criado com sucesso");
