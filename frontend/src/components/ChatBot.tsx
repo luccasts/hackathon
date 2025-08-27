@@ -15,9 +15,10 @@ const videosRecomendados = [
     titulo: "Sinais de autismo em crianças",
     url: "https://youtu.be/9EbqqBhJXyI",
   },
-  { 
-    titulo: "Entenda o TEA", 
-    url: "https://youtu.be/Ve6EZ4PejWU" },
+  {
+    titulo: "Entenda o TEA",
+    url: "https://youtu.be/Ve6EZ4PejWU",
+  },
   {
     titulo: "Como lidar com o autismo na infância",
     url: "https://youtu.be/D4StEQbBeEc",
@@ -79,52 +80,27 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
   };
 
   return (
-    <div
-      className="max-w-4xl mx-auto mt-6 sm:mt-10 p-4 sm:p-6 border rounded-xl shadow-md font-sans"
-      style={{
-        borderColor: "var(--color-primary)",
-        backgroundColor: "var(--color-support)",
-      }}
-    >
-      <h2
-        className="text-center text-2xl font-semibold mb-6"
-        style={{ color: "var(--color-primary)" }}
-      >
+    <div className="max-w-4xl mx-auto mt-6 sm:mt-10 p-4 sm:p-6 border rounded-xl shadow-md font-sans border-primary bg-support">
+      <h2 className="text-center text-2xl font-semibold mb-6 text-primary">
         Assistente Virtual
       </h2>
 
-      <div
-        className="mb-4 h-120 overflow-y-auto rounded p-4 flex flex-col gap-3"
-        style={{
-          backgroundColor: "var(--color-background)",
-          border: `1px solid var(--color-primary)`,
-        }}
-      >
+      <div className="mb-4 h-120 overflow-y-auto rounded p-4 flex flex-col gap-3 bg-background border border-primary">
         {history.map((msg, idx) => (
           <div
             key={idx}
-            className="max-w-[75%] p-3 rounded-lg text-sm"
-            style={{
-              alignSelf: msg.type === "user" ? "flex-end" : "flex-start",
-              backgroundColor:
-                msg.type === "user"
-                  ? "var(--color-primary)"
-                  : "var(--color-support)",
-              color:
-                msg.type === "user"
-                  ? "var(--color-texto)"
-                  : "var(--color-primary)",
-            }}
+            className={`max-w-[75%] p-3 rounded-lg text-sm ${
+              msg.type === "user"
+                ? "self-end bg-primary text-text"
+                : "self-start bg-support text-primary"
+            }`}
           >
             {msg.text}
           </div>
         ))}
 
         {loading && (
-          <p
-            className="text-sm italic"
-            style={{ color: "var(--color-primary-hover)" }}
-          >
+          <p className="text-sm italic text-[var(--color-primary-hover)]">
             Carregando resposta...
           </p>
         )}
@@ -155,21 +131,15 @@ export default function ChatBot({ initialMessage }: ChatBotProps) {
           placeholder="Descreva o que está acontecendo com seu filho(a)..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="flex-1 rounded px-4 py-2 focus:outline-none"
           disabled={loading}
-          style={{
-            border: `1px solid var(--color-primary)`,
-            color: "var(--color-primary-hover)",
-            backgroundColor: "var(--color-support)",
-          }}
+          className="flex-1 rounded px-4 py-2 focus:outline-none border border-primary text-[var(--color-primary-hover)] bg-support"
         />
         <button
           type="submit"
           disabled={loading}
-          className="px-5 py-2 rounded text-white cursor-pointer disabled:cursor-not-allowed"
+          className="px-5 py-2 rounded text-white cursor-pointer disabled:cursor-not-allowed bg-primary"
           style={{
-            backgroundColor: "var(--color-primary)",
-            opacity: loading ? 0.6 : 1,
+            opacity: loading ? 0.6 : 1, // só esse continua inline porque depende de JS
           }}
         >
           Enviar
