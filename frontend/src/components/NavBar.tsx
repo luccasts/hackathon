@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import logo from '../assets/logo.png'
 
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +9,7 @@ export default function NavBar() {
     <header className="bg-menu">
       <nav className="container m-auto text-center text-support px-6 py-4 flex items-center justify-between">
         <div className="font-bold text-xl"><Link to={"/"} onClick={() => setIsOpen(false)} 
-        >Logo </Link></div>
+        ><img className="h-14 w-auto" src={logo} alt="logo" /></Link></div>
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? "✖" : "☰"}
         </button>
@@ -21,7 +22,7 @@ export default function NavBar() {
             > Home </Link>
           <Link to="/criar-conta" onClick={() => setIsOpen(false)}
             className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-menu-hover rounded-md"
-          > Criar Contar </Link>
+          > Criar Conta </Link>
           <Link to="/entrar" onClick={() => setIsOpen(false)}
             className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-menu-hover rounded-md"
           > Entrar </Link>
