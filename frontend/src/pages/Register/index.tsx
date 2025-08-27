@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { service } from "../../api/service";
+import { Link } from "react-router";
 
 export default function RegisterPage() {
   const [password, setPassword] = useState("");
@@ -11,21 +12,22 @@ export default function RegisterPage() {
     await service.registerUser(username, email, password);
   }
   return (
-    <section className="flex items-center justify-center  bg-background px-4 flex-1">
+    <section className="flex items-center justify-center bg-background px-4 flex-1">
       <div className="flex flex-col md:flex-row w-full max-w-4xl rounded-lg overflow-hidden shadow-lg">
         {/* Lado esquerdo (Login) */}
-        <div className="w-full md:w-1/2 bg-primary text-text flex flex-col items-center justify-center p-8">
+        <div className="w-full md:w-1/2 bg-primary text-support flex flex-col items-center justify-center p-8">
           <div className="mb-6 text-center">
             <div className="text-2xl font-bold mb-2">Hackathon</div>
             <p className="text-lg font-semibold">Seja bem-vindo!</p>
             <p>Acesse sua conta agora mesmo.</p>
           </div>
-          <button className="border border-support px-6 py-2 rounded-full font-bold hover:bg-support hover:text-text-hover transition">
+          <Link to={"/entrar"} className="border border-background px-6 py-2 rounded-full font-bold hover:bg-support hover:text-text-hover transition">
             ENTRAR
-          </button>
-          <a href="#" className="mt-4 text-sm underline">
+          </Link>
+          {/* Featured soon
+          <Link to="#" className="mt-4 text-sm underline">
             Esqueci minha senha
-          </a>
+          </Link> */}
         </div>
 
         {/* Lado direito (Cadastro) */}
@@ -46,7 +48,7 @@ export default function RegisterPage() {
                 name="username"
                 id="username"
                 placeholder="Nome"
-                className="w-full px-4 py-2  bg-background text-text-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
+                className="w-full px-4 py-2  bg-background text-text placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
             </div>
             <div>
@@ -57,7 +59,7 @@ export default function RegisterPage() {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="w-full px-4 py-2 bg-background text-text-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
+                className="w-full px-4 py-2 bg-background text-text placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
             </div>
             <div>
@@ -69,12 +71,12 @@ export default function RegisterPage() {
                 name="password"
                 id="password"
                 placeholder="Senha"
-                className="w-full px-4 py-2 bg-background text-text-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
+                className="w-full px-4 py-2 bg-background text-text placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-secondary text-text py-2 rounded-full font-bold hover:bg-secondary-hover transition"
+              className="w-full bg-primary text-support py-2 rounded-full font-bold hover:bg-primary-hover transition"
             >
               CADASTRAR
             </button>
