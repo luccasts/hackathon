@@ -6,7 +6,7 @@ export default function NavBar() {
     
   return (
     <header className="bg-menu">
-      <nav className="container m-auto text-center text-text px-6 py-4 flex items-center justify-between">
+      <nav className="container m-auto text-center text-support px-6 py-4 flex items-center justify-between">
         <div className="font-bold text-xl"><Link to={"/"} onClick={() => setIsOpen(false)} 
         >Logo </Link></div>
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -17,13 +17,13 @@ export default function NavBar() {
         >
           <hr className="text-support" />
           <Link to="/" onClick={() => setIsOpen(false)} 
-            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-transparent"
+            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-menu-hover rounded-md"
             > Home </Link>
           <Link to="/criar-conta" onClick={() => setIsOpen(false)}
-            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-transparent"
+            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-menu-hover rounded-md"
           > Criar Contar </Link>
           <Link to="/entrar" onClick={() => setIsOpen(false)}
-            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-transparent"
+            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-menu-hover rounded-md"
           > Entrar </Link>
         </div>
       </nav>

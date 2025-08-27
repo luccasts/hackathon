@@ -2,6 +2,7 @@ import { useState } from "react";
 import { service } from "../../api/service";
 import { useAuth } from "../../context/auth/useAuth";
 import { axiosInstance } from "../../api/instance";
+import { Link } from "react-router";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
@@ -16,10 +17,10 @@ export default function LoginPage() {
       <div className="flex flex-col md:flex-row w-full max-w-4xl rounded-lg overflow-hidden shadow-lg">
         {/* Lado esquerdo (agora com o estilo do lado direito) */}
         <div className="w-full md:w-1/2 bg-support p-8">
-          <h2 className="text-xl font-bold text-center text-secondary">
+          <h2 className="text-xl font-bold text-center text-text">
             Entrar na conta
           </h2>
-          <p className="text-sm text-center text-secondary mb-6">
+          <p className="text-sm text-center text-text mb-6">
             Preencha o formulário
           </p>
           <form onSubmit={(e) => handleRegister(e)} className="space-y-4">
@@ -31,7 +32,7 @@ export default function LoginPage() {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="w-full px-4 py-2 bg-background text-text-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
+                className="w-full px-4 py-2 bg-background text-text placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
             </div>
             <div>
@@ -43,12 +44,12 @@ export default function LoginPage() {
                 name="password"
                 id="password"
                 placeholder="Senha"
-                className="w-full px-4 py-2 bg-background text-text-hover placeholder-placeholder rounded-md shadow-md focus:outline-none"
+                className="w-full px-4 py-2 bg-background text-text placeholder-placeholder rounded-md shadow-md focus:outline-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-secondary text-text py-2 rounded-full font-bold hover:bg-secondary-hover transition"
+              className="w-full bg-primary text-support py-2 rounded-full font-bold hover:bg-primary-hover transition"
             >
               Entrar
             </button>
@@ -56,18 +57,19 @@ export default function LoginPage() {
         </div>
 
         {/* Lado direito (agora com o estilo do lado esquerdo) */}
-        <div className="w-full md:w-1/2 bg-secondary text-text flex flex-col items-center justify-center p-8">
+        <div className="w-full md:w-1/2 bg-primary text-support flex flex-col items-center justify-center p-8">
           <div className="mb-6 text-center">
             <div className="text-2xl font-bold mb-2">Hackathon</div>
             <p className="text-lg font-semibold">Seja bem-vindo!</p>
             <p>Crie sua conta agora mesmo.</p>
           </div>
-          <button className="border border-background px-6 py-2 rounded-full font-bold hover:bg-background hover:text-secondary-hover transition">
+          <Link to={"/criar-conta"} className="border border-support px-6 py-2 rounded-full font-bold hover:bg-support-hover hover:text-primary-hover transition">
             Criar conta
-          </button>
-          <a href="#" className="mt-4 text-sm underline">
+          </Link>
+          {/* Featured soon
+          <Link to={"/"} className="mt-4 text-sm underline">
             Esqueci minha senha
-          </a>
+          </Link> */}
         </div>
       </div>
     </section>
