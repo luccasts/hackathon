@@ -5,15 +5,15 @@ export function handleApiError(error: AxiosError | unknown) {
   if (error instanceof AxiosError) {
     const status = error.response?.status;
     const data = error.response?.data;
-    console.log(error.response?.data)
+
     const message = data?.message || "Erro desconhecido.";
-    console.error(error)
+    console.error(error);
     switch (status) {
       case 400:
         toast.error(`Erro de validação: ${message}`);
         break;
       case 401:
-        toast.error("Não autorizado.");
+        toast.error("Usuário ou senha incorretos.");
         break;
       case 403:
         toast.error("Acesso negado.");

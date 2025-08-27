@@ -1,31 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { service } from "../api/service";
 
 type Mensagem = {
   type: "user" | "ia";
   text: string;
 };
-
-export default function ChatBot() {
+interface ChatBotProps {
+  initialMessage?: string;
+}
+export default function ChatBot({ initialMessage }: ChatBotProps) {
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [history, setHistory] = useState<Mensagem[]>([]);
 
-  const enviarPergunta = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!message.trim()) return;
+  useEffect(() => {
+    if (initialMessage) {
+      sendMessage(initialMessage);
+    }
+  }, [initialMessage]);
+
+  const sendMessage = async (text: string) => {
+    if (!text.trim()) return;
 
     setLoading(true);
-    setHistory((prev) => [...prev, { type: "user", text: message }]);
+    setHistory((prev) => [...prev, { type: "user", text }]);
 
     try {
-      const res = await service.postMessage(message);
-
-      const textoResposta: string =
+      const res = await service.postMessage(text);
+      const resposta =
         res?.data.answer ||
         "Não consegui entender muito bem. Tente reformular sua pergunta.";
 
-      setHistory((prev) => [...prev, { type: "ia", text: textoResposta }]);
+      setHistory((prev) => [...prev, { type: "ia", text: resposta }]);
     } catch (err) {
       console.error(err);
       const erroMsg =
@@ -33,8 +39,13 @@ export default function ChatBot() {
       setHistory((prev) => [...prev, { type: "ia", text: erroMsg }]);
     }
 
-    setMessage("");
     setLoading(false);
+  };
+
+  const sendQuestion = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await sendMessage(message);
+    setMessage("");
   };
 
   return (
@@ -91,7 +102,7 @@ export default function ChatBot() {
       <form
         className="flex gap-3"
         method="post"
-        onSubmit={(e) => enviarPergunta(e)}
+        onSubmit={(e) => sendQuestion(e)}
       >
         <input
           required

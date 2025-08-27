@@ -50,6 +50,12 @@ export const service = {
       });
       return res;
     } catch (error) {
+      //Para Debbugar
+      // if (error instanceof AxiosError) {
+      //   // if (error.response) {
+      //   //   console.log(error?.response.data);
+      //   // }
+      // }
       console.error(error);
     }
   },
