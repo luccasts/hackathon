@@ -6,17 +6,17 @@ from .models import User
 User = get_user_model()
 
 class RegistroSerializer(serializers.ModelSerializer):
-    senha = serializers.CharField(write_only=True, validators=[validate_password])
+    password = serializers.CharField(write_only=True, validators=[validate_password])
 
     class Meta:
         model = User
-        fields = ("id", "username", "email", "senha")  
+        fields = ("id", "username", "email", "password")  
 
     def create(self, validated_data):
         return User.objects.create_user(
             username=validated_data["username"],
             email=validated_data["email"],
-            password=validated_data["senha"],
+            password=validated_data["password"],
         )
 
 class UsuarioSerializer(serializers.ModelSerializer):

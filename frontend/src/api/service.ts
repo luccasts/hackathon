@@ -8,7 +8,7 @@ export const service = {
       const res = await axiosInstance.post("/api/auth/register/", {
         username,
         email,
-        senha: password,
+        password: password,
       });
       console.log(res, "deu certo");
       toast.success("Usuário criado com sucesso");
