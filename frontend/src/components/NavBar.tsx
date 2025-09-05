@@ -39,54 +39,63 @@ export default function NavBar() {
             Triagem
           </Link>
           {authenticatedUser.user ? (
-            // <Link
-            //   to={"/perfil"}
-            //   onClick={() => setIsOpen(false)}
-            //
-            // >
             <>
-              <CiUser
-                onClick={() =>
-                  setIsAuthenticatedUserOpen(!isAuthenticatedUserOpen)
-                }
-                className="size-6"
-              />
-              <div className="relative">
-                {isAuthenticatedUserOpen ? (
-                  <div className="origin-top-right absolute  right-0 mt-10 px-2 py-2 w-56 rounded-md bg-primary shadow-lg">
-                    <div className="flex flex-col">
+              <div className="hidden md:flex relative items-center">
+                <CiUser
+                  onClick={() =>
+                    setIsAuthenticatedUserOpen(!isAuthenticatedUserOpen)
+                  }
+                  size={28}
+                  className="cursor-pointer"
+                />
+                {isAuthenticatedUserOpen && (
+                  <div className="absolute right-0 top-full w-56 rounded-md bg-primary shadow-lg">
+                    <div className="flex flex-col p-2">
                       <Link
-                        className=" hover:bg-menu-hover md:hover:bg-menu-hover rounded-md bg-primary"
+                        className="hover:bg-menu-hover rounded-md px-2 py-2"
                         to={"/perfil"}
                       >
-                        {" "}
-                        Perfil{" "}
+                        Perfil
                       </Link>
-                      <Link
-                        className=" hover:bg-menu-hover md:hover:bg-menu-hover rounded-md bg-primary"
-                        to={"/"}
-                        onClick={() => logout()}
+                      <button
+                        onClick={logout}
+                        className="hover:bg-menu-hover rounded-md px-2 py-2 cursor-pointer"
                       >
-                        Sair da conta{" "}
-                      </Link>
+                        Sair da conta
+                      </button>
                     </div>
                   </div>
-                ) : (
-                  ""
                 )}
+              </div>
+
+              {/* Mobile (<md)*/}
+              <div className="flex flex-col md:hidden ">
+                <Link
+                  className="hover:bg-menu-hover rounded-md px-2 py-2 "
+                  to={"/perfil"}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Perfil
+                </Link>
+                <button
+                  onClick={() => {
+                    logout();
+                    setIsOpen(false);
+                  }}
+                  className="hover:bg-menu-hover rounded-md px-2 py-2 cursor-pointer"
+                >
+                  Sair da conta
+                </button>
               </div>
             </>
           ) : (
-            // </Link>
-            <>
-              <Link
-                to="/entrar"
-                onClick={() => setIsOpen(false)}
-                className="border border-support px-6 py-2 rounded-full  hover:bg-support-hover hover:text-primary-hover transition cursor-pointer"
-              >
-                Entrar
-              </Link>
-            </>
+            <Link
+              to="/entrar"
+              onClick={() => setIsOpen(false)}
+              className="border border-support px-6 py-2 rounded-full hover:bg-support-hover hover:text-primary-hover transition cursor-pointer"
+            >
+              Entrar
+            </Link>
           )}
         </div>
       </nav>

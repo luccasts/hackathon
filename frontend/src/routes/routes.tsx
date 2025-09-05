@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import ProtectedRoute from "../components/ProtectedRoute";
 import AuthProvider from "../context/auth";
 import AssistantPage from "../pages/Assistant";
 import ChildScreeningPage from "../pages/ChildScreening";
@@ -36,11 +37,19 @@ export const routes = [
       },
       {
         path: "/triagem-infantil",
-        element: <ChildScreeningPage />,
+        element: (
+          <ProtectedRoute>
+            <ChildScreeningPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/perfil",
-        element: <ProfilePage />,
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

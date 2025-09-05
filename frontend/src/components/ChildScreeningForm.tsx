@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { service } from "../api/service";
+import { useAuth } from "../context/auth/useAuth";
 
 // Lista de perguntas
 const questions = [
@@ -32,7 +33,7 @@ export default function ChildScreeningForm() {
     Array(questions.length).fill(null),
   );
   const [finalizado, setFinalizado] = useState(false);
-
+  const { authenticatedUser } = useAuth();
   function handleResposta(valor: boolean) {
     const novasRespostas = [...answers];
     novasRespostas[index] = valor;
@@ -53,9 +54,16 @@ export default function ChildScreeningForm() {
   }
 
   async function enviarResultado() {
-    console.log(answers);
+    console.log(questions, answers);
+
     try {
-      await service.postChildScreening(answers);
+      if (authenticatedUser.user && authenticatedUser.user.id !== null) {
+        await service.postChildScreening(
+          questions,
+          answers,
+          authenticatedUser.user.id,
+        );
+      }
     } catch (err) {
       console.error("Erro ao enviar resultado:", err);
     }

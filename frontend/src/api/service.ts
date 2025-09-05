@@ -74,14 +74,31 @@ export const service = {
     }
   },
 
-  postChildScreening: async (answers: (boolean | null)[]) => {
+  postChildScreening: async (
+    questions: string[],
+    answers: (boolean | null)[],
+    id: number,
+  ) => {
     try {
       const res = await axiosPrivate.post("/api/child-screening/", {
+        questions: questions,
         answers: answers,
+        id: id,
       });
       return res;
     } catch (error) {
       console.error(error);
+    }
+  },
+  getChildScreening: async () => {
+    try {
+      const response = await axiosPrivate.get("/api/get-child-screening/");
+      const { questions, answers } = response.data.data;
+      console.log("Perguntas:", questions);
+      console.log("Respostas:", answers);
+      return { questions, answers };
+    } catch (error) {
+      console.error("Erro ao buscar as respostas:", error);
     }
   },
 };
