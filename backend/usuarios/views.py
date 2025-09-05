@@ -22,6 +22,6 @@ class UsuarioViewSet(viewsets.ModelViewSet):
 class RegistroView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegistroSerializer
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
 
 # Create your views here.
