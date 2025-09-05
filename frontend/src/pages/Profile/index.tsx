@@ -1,34 +1,61 @@
 import { FaUserCircle, FaEdit } from "react-icons/fa";
-
 import { useAuth } from "../../context/auth/useAuth";
+import { useEffect, useState } from "react";
+import { service } from "../../api/service";
+
+// Tipos de props para o perfil
 interface ProfilePageProps {
   userName?: string;
   userEmail?: string;
-  userBio?: string;
-  testsCompleted?: number;
   profileImageUrl?: string;
+}
+
+// Tipo ajustado conforme os campos usados no .map()
+interface childScreeningProps {
+  id: number;
+  user: number;
+  name: string;
+  score: number;
+  date: string;
+  data: {
+    questions: string[];
+    answers: boolean[];
+  };
 }
 
 export default function ProfilePage({
   userName = "Nome do Usuário",
   userEmail = "usuario@example.com",
-
   profileImageUrl,
 }: ProfilePageProps) {
-  const mockTests = [
-    {
-      id: 1,
-      name: "Triagem",
-      score: "Risco Alto",
-      date: "2023-10-26",
-    },
-  ];
   const { authenticatedUser } = useAuth();
+  const [data, setData] = useState<childScreeningProps[]>([]);
+
+  async function getData() {
+    const childScreening = await service.getChildScreening();
+    if (childScreening) {
+      console.log(childScreening, "→ Dados brutos da API");
+      setData(childScreening);
+    }
+  }
+
+  useEffect(() => {
+    if (authenticatedUser.user) {
+      getData();
+    }
+  }, [authenticatedUser.user]);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      console.log(data);
+    }
+  }, [data]);
 
   if (authenticatedUser.user) {
     return (
       <div className="min-h-screen bg-gray-100 py-6 sm:py-8 lg:py-12 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+          {/* Perfil do usuário */}
           <div className="p-6 border-b border-gray-200 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
             <div className="w-32 h-32 md:w-40 md:h-40 bg-blue-100 border-2 border-blue-400 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
               {profileImageUrl ? (
@@ -53,13 +80,16 @@ export default function ProfilePage({
               </div>
             </div>
           </div>
+
+          {/* Lista de Triagens */}
           <div className="p-6">
             <h2 className="text-2xl font-semibold text-gray-800 mb-5 border-b pb-3">
-              Triagem Realizadas
+              Triagens Realizadas
             </h2>
-            {mockTests.length > 0 ? (
+
+            {data.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {mockTests.map((test) => (
+                {data.map((test) => (
                   <div
                     key={test.id}
                     className="bg-red-50 border-2 border-red-400 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
@@ -68,7 +98,9 @@ export default function ProfilePage({
                       {test.name}
                     </h3>
                     <p className="text-red-700 mt-1">Resultado: {test.score}</p>
-                    <p className="text-red-600 text-sm">Data: {test.date}</p>
+                    <p className="text-red-600 text-sm">
+                      Data: {new Date(test.date).toLocaleDateString()}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -82,4 +114,7 @@ export default function ProfilePage({
       </div>
     );
   }
+
+  // Se não estiver autenticado
+  return null;
 }

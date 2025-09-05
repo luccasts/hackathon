@@ -57,11 +57,14 @@ export default function ChildScreeningForm() {
     console.log(questions, answers);
 
     try {
+      const result = classificarRisco();
       if (authenticatedUser.user && authenticatedUser.user.id !== null) {
         await service.postChildScreening(
           questions,
           answers,
           authenticatedUser.user.id,
+          result,
+          "M-CHAT-R/F",
         );
       }
     } catch (err) {

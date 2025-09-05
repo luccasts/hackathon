@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children }: isLoginProps) {
   const { authenticatedUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+
   useEffect(() => {
     if (!authenticatedUser?.user) {
       if (location.pathname === "/triagem-infantil") {

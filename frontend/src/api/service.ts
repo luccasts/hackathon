@@ -78,12 +78,20 @@ export const service = {
     questions: string[],
     answers: (boolean | null)[],
     id: number,
+    result: string,
+    screening: string,
   ) => {
     try {
-      const res = await axiosPrivate.post("/api/child-screening/", {
-        questions: questions,
-        answers: answers,
-        id: id,
+      const res = await axiosPrivate.post("/api/create-child-screening/", {
+        data: [
+          {
+            questions: questions,
+            answers: answers,
+            result: result,
+            screening: screening,
+          },
+        ],
+        user: id,
       });
       return res;
     } catch (error) {
@@ -93,10 +101,8 @@ export const service = {
   getChildScreening: async () => {
     try {
       const response = await axiosPrivate.get("/api/get-child-screening/");
-      const { questions, answers } = response.data.data;
-      console.log("Perguntas:", questions);
-      console.log("Respostas:", answers);
-      return { questions, answers };
+
+      return response.data;
     } catch (error) {
       console.error("Erro ao buscar as respostas:", error);
     }
