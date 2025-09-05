@@ -4,4 +4,4 @@ from .models import ChildScreening
 class ChildScreeningSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChildScreening
-        fields = ['id','user','data']
+        fields = ['id','user','questions','answers','result','screening','date',]

@@ -6,31 +6,41 @@ from .models import ChildScreening
 from .serializers import ChildScreeningSerializer
 
 # Create your views here.
-class CreateChildScreening(viewsets.ModelViewSet):
+class CreateChildScreeningViewSet(viewsets.ModelViewSet):
     queryset = ChildScreening.objects.all()
     serializer_class = ChildScreeningSerializer
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
-        data = request.data
-        questions = data.get('questions')
-        answers = data.get('answers')
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)
 
-        if len(questions) != (answers):
-            return Response({"message":"Número de perguntas e respostas não coincide."}, status=status.HTTP_400_BAD_REQUEST)
-        
-        screening_data = {
-            "user": request.user.id,
-            "data": {"questions": questions, "answers": answers}
-        }
+    def create(self, request, *args, **kwargs):
+        questions = request.data.get('questions')
+        answers = request.data.get('answers')
+        result = request.data.get('result')
+        screening = request.data.get('screening')
+        user_id = request.data.get('user')
+
+        screening_data = ChildScreening.objects.create(
+            user_id=user_id,
+            questions=questions,
+            answers=answers,
+            result=result,
+            screening=screening
+        )
 
         serializer = ChildScreeningSerializer(data=screening_data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response({
+                'name': screening_data.screening,
+                'date': screening_data.date,
+                'result': screening_data.result
+            }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class GetChildScreening(viewsets.ModelViewSet):
+class GetChildScreeningViewSet(viewsets.ModelViewSet):
     queryset = ChildScreening.objects.all()
     serializer_class = ChildScreeningSerializer
     permission_classes = [IsAuthenticated]

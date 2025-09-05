@@ -4,7 +4,6 @@ import os
 import google.generativeai as genai
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from dotenv import load_dotenv
 
 def call_generate_content(model, question):
     return model.generate_content(question)

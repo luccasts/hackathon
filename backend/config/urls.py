@@ -18,18 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from django.http import HttpResponse
-from usuarios.views import UsuarioViewSet
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.DefaultRouter()
 def health(_): return HttpResponse("Api online")
 
-router.register(r"usuarios",UsuarioViewSet)
-
 urlpatterns = [
     path('', health),
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
     path('api/', include('triagem.urls')),
     path('api/auth/', include('usuarios.urls')),
     path('', include('core.urls')),
