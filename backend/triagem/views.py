@@ -1,12 +1,14 @@
 from rest_framework import status
-from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import ChildScreening
 from .serializers import ChildScreeningSerializer
 
 # Create your views here.
-class CreateChildScreening(APIView):
+class CreateChildScreening(viewsets.ModelViewSet):
+    queryset = ChildScreening.objects.all()
+    serializer_class = ChildScreeningSerializer
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -28,7 +30,9 @@ class CreateChildScreening(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class GetChildScreening(APIView):
+class GetChildScreening(viewsets.ModelViewSet):
+    queryset = ChildScreening.objects.all()
+    serializer_class = ChildScreeningSerializer
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
