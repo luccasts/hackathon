@@ -26,7 +26,7 @@ export default function Home() {
               <img
                 src={hero}
                 alt="Um adulto conversando com uma criança"
-                className="hidden sm:block w-full sm:w-[300px] md:w-[400px] lg:w-[440px] xl:w-[600px] rounded-2xl"
+                className="hidden sm:block w-full sm:w-[300px] md:w-[400px] lg:w-[440px] xl:w-[600px] rounded-[300px]"
               />
             </div>
 

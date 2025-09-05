@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import logo from "../assets/white-logo.png";
+import { useAuth } from "../context/auth/useAuth";
+import { CiUser } from "react-icons/ci";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticatedUserOpen, setIsAuthenticatedUserOpen] = useState(false);
+  const { authenticatedUser, logout } = useAuth();
 
   return (
     <header className="bg-menu">
@@ -34,20 +38,56 @@ export default function NavBar() {
           >
             Triagem
           </Link>
-          <Link
-            to="/criar-conta"
-            onClick={() => setIsOpen(false)}
-            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-menu-hover rounded-md"
-          >
-            Criar Conta
-          </Link>
-          <Link
-            to="/entrar"
-            onClick={() => setIsOpen(false)}
-            className="block px-2 py-2 hover:bg-menu-hover md:hover:bg-menu-hover rounded-md"
-          >
-            Entrar
-          </Link>
+          {authenticatedUser.user ? (
+            // <Link
+            //   to={"/perfil"}
+            //   onClick={() => setIsOpen(false)}
+            //
+            // >
+            <>
+              <CiUser
+                onClick={() =>
+                  setIsAuthenticatedUserOpen(!isAuthenticatedUserOpen)
+                }
+                className="size-6"
+              />
+              <div className="relative">
+                {isAuthenticatedUserOpen ? (
+                  <div className="origin-top-right absolute  right-0 mt-10 px-2 py-2 w-56 rounded-md bg-primary shadow-lg">
+                    <div className="flex flex-col">
+                      <Link
+                        className=" hover:bg-menu-hover md:hover:bg-menu-hover rounded-md bg-primary"
+                        to={"/perfil"}
+                      >
+                        {" "}
+                        Perfil{" "}
+                      </Link>
+                      <Link
+                        className=" hover:bg-menu-hover md:hover:bg-menu-hover rounded-md bg-primary"
+                        to={"/"}
+                        onClick={() => logout()}
+                      >
+                        Sair da conta{" "}
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            </>
+          ) : (
+            // </Link>
+            <>
+              <Link
+                to="/entrar"
+                onClick={() => setIsOpen(false)}
+                className="border border-support px-6 py-2 rounded-full  hover:bg-support-hover hover:text-primary-hover transition cursor-pointer"
+              >
+                Entrar
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     </header>

@@ -4,6 +4,7 @@ import AssistantPage from "../pages/Assistant";
 import ChildScreeningPage from "../pages/ChildScreening";
 import Home from "../pages/Home";
 import LoginPage from "../pages/Login";
+import ProfilePage from "../pages/Profile";
 import RegisterPage from "../pages/Register";
 
 export const routes = [
@@ -36,6 +37,10 @@ export const routes = [
       {
         path: "/triagem-infantil",
         element: <ChildScreeningPage />,
+      },
+      {
+        path: "/perfil",
+        element: <ProfilePage />,
       },
     ],
   },
