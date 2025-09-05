@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { service } from "../api/service";
 import { useAuth } from "../context/auth/useAuth";
 
@@ -34,6 +34,11 @@ export default function ChildScreeningForm() {
   );
   const [finalizado, setFinalizado] = useState(false);
   const { authenticatedUser } = useAuth();
+  useEffect(() => {
+    if (finalizado) {
+      enviarResultado();
+    }
+  }, [finalizado]);
   function handleResposta(valor: boolean) {
     const novasRespostas = [...answers];
     novasRespostas[index] = valor;
@@ -111,8 +116,6 @@ export default function ChildScreeningForm() {
       mensagemFinal =
         "Os resultados indicam um risco elevado de sinais relacionados ao espectro autista. É fortemente recomendado buscar um profissional especializado.";
     }
-
-    enviarResultado();
 
     return (
       <div className="max-w-xl mx-auto p-6 bg-white shadow rounded flex flex-col">

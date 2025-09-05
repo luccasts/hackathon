@@ -4,4 +4,7 @@ from .models import ChildScreening
 class ChildScreeningSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChildScreening
-        fields = ['id','user','questions','answers','result','screening','date',]
+        fields = '__all__'
+        extra_kwargs = {
+            'user': {'required': False}  # Importante!
+        }
