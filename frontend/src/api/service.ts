@@ -83,14 +83,10 @@ export const service = {
   ) => {
     try {
       const res = await axiosPrivate.post("/api/create-child-screening/", {
-        data: [
-          {
-            questions: questions,
-            answers: answers,
-            result: result,
-            screening: screening,
-          },
-        ],
+        questions: questions,
+        answers: answers,
+        result: result,
+        screening: screening,
         user: id,
       });
       return res;
